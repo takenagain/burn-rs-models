@@ -9,5 +9,5 @@ publish = false
 [dependencies]
 resnet-burn = { path = "../../resnet", features = ["pretrained"] }
 burn = { workspace = true, features = ["ndarray"] }
-image = { version = "0.24.9", features = ["png", "jpeg"] }
+image = { version = "0.25.6", features = ["png", "jpeg"] }
 

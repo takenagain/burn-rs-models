@@ -1,9 +1,10 @@
 use burn::{
-    module::{ConstantRecord, Module},
+    module::Module,
     tensor::{backend::Backend, Device, Tensor},
 };
 
-use crate::model::bottleneck::SPP_POOLING;
+#[cfg(all(not(feature = "std"), feature = "pretrained"))]
+use alloc::format;
 
 use super::{
     head::{Head, HeadConfig},
@@ -12,7 +13,7 @@ use super::{
 
 #[cfg(feature = "pretrained")]
 use {
-    super::weights::{self, WeightsMeta},
+    crate::model::weights::{self, WeightsMeta},
     burn::record::{FullPrecisionSettings, Recorder, RecorderError},
     burn_import::pytorch::{LoadArgs, PyTorchFileRecorder},
 };
@@ -259,6 +260,7 @@ impl<B: Backend> Yolox<B> {
     }
 
     /// Load specified pre-trained PyTorch weights as a record.
+    #[cfg(feature = "pretrained")]
     fn load_weights_record(
         weights: &weights::Weights,
         device: &Device<B>,
@@ -296,7 +298,7 @@ impl<B: Backend> Yolox<B> {
             // Without this, the vector would be initialized as empty and thus no MaxPool2d
             // layers would be applied, which is incorrect.
             if spp.m.is_empty() {
-                spp.m = vec![ConstantRecord; SPP_POOLING.len()];
+                // spp.m = vec![ConstantRecord; SPP_POOLING.len()];
             }
         }
 

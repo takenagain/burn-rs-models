@@ -1,9 +1,6 @@
 use burn::tensor::{backend::Backend, Int, Tensor};
-use rand::{
-    distributions::{Distribution, WeightedIndex},
-    rngs::StdRng,
-    SeedableRng,
-};
+use rand::{rngs::StdRng, SeedableRng};
+use rand_distr::{weighted::WeightedIndex, Distribution};
 
 pub enum Sampler {
     TopP(TopP),

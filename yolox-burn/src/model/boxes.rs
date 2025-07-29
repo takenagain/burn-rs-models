@@ -1,6 +1,9 @@
 use burn::tensor::{backend::Backend, ElementConversion, Tensor};
 use itertools::Itertools;
 
+#[cfg(not(feature = "std"))]
+use alloc::vec::Vec;
+
 pub struct BoundingBox {
     pub xmin: f32,
     pub ymin: f32,

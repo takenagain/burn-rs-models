@@ -48,7 +48,9 @@ tokenizers = { version = "0.21.4-dev.0", default-features = false, features = [
 rand = { version = "0.9.2", default-features = false, features = [
     "alloc",
     "std_rng",
-] } # std_rng is for no_std
+    "std",
+] } # std_rng is for no_std, std is needed for distributions
+rand_distr = "0.5.1"
 
 [dev-dependencies]
 burn = { version = "0.18.0", default-features = false }

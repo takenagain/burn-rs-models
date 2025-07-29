@@ -9,6 +9,12 @@ license.workspace = true
 default = []
 std = []
 pretrained = ["burn/network", "std", "dep:dirs"]
+tch-cpu = ["burn/tch"]
+tch-gpu = ["burn/tch"]
+wgpu = ["burn/wgpu"]
+cuda = ["burn/cuda"]
+rocm = ["burn/rocm"]
+autodiff = ["burn/autodiff"]
 
 [dependencies]
 burn = { workspace = true }

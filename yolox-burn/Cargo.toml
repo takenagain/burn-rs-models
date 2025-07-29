@@ -9,10 +9,16 @@ edition = "2021"
 default = []
 std = []
 pretrained = ["burn/network", "std", "dep:dirs"]
+tch-cpu = ["burn/tch"]
+tch-gpu = ["burn/tch"]
+wgpu = ["burn/wgpu"]
+cuda = ["burn/cuda"]
+rocm = ["burn/rocm"]
+autodiff = ["burn/autodiff"]
 
 [dependencies]
 # Note: default-features = false is needed to disable std
-burn = { version = "0.18.0", default-features = false }
+burn = { version = "0.18.0", default-features = false, features = ["autodiff"] }
 burn-import = { version = "0.18.0" }
 itertools = { version = "0.14.0", default-features = false, features = [
     "use_alloc",
@@ -24,5 +30,5 @@ serde = { version = "1.0.219", default-features = false, features = [
 ] } # alloc is for no_std, derive is needed
 
 [dev-dependencies]
-burn = { version = "0.18.0", features = ["ndarray"] }
+burn = { version = "0.18.0", features = ["wgpu"] }
 image = { version = "0.25.6", features = ["png", "jpeg"] }
